@@ -54,7 +54,7 @@ app.get('/volume/:vol(\\d+)', function(req, res, next){
 })
 app.get('/channels/:channel(\\d+)', function(req, res, next){
     var resvar = res;
-    var vol = req.params.channel;
+    var channel = req.params.channel;
     var channelchangecmd = child_process.spawn('/usr/bin/mpc', ["play", channel]);
     channelchangecmd.on("close", function(code, signal) {
         if(!code) // normal exit

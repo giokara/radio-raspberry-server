@@ -91,18 +91,22 @@ app.get('/channels', function(req, res, next) {
         mychannels += data;
     })
     channellistcmd.on("close", function(code, signal) {
-        var channellist = mychannels.split(/\r?\n/);
-        var channels = [];
-        channellist.forEach(function(ch) {
-            var channelparams = ch.split(/\r?;/);
-            var newchannel = Object.create(null);
-            newchannel.position = channelparams[0];
-            newchannel.name = channelparams[1];
-            newchannel.url = channelparams[2];
-            channels.push(newchannel)
-        })
-        channels.pop(); // last channel corresponds with empty line
-        console.log(channels);
+        if(!code) {
+            var channellist = mychannels.split(/\r?\n/);
+            var channels = [];
+            channellist.forEach(function(ch) {
+                var channelparams = ch.split(/\r?;/);
+                var newchannel = Object.create(null);
+                newchannel.position = channelparams[0];
+                newchannel.name = channelparams[1];
+                newchannel.url = channelparams[2];
+                channels.push(newchannel)
+            })
+            channels.pop(); // last channel corresponds with empty line
+            resvar.json(channels);
+        }
+        else
+            resvar.json({"error": "Channel list exited with code " + code});
     });
 });
 

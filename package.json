@@ -1,0 +1,22 @@
+{
+  "name": "mpd-http-server",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=4.4.3"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+      "body-parser":"^1.18.2",
+      "child_process":"^1.0.2",
+      "express":"^4.15.4",
+      "express-validator":"^4.2.1",
+      "helmet":"^3.8.1",
+      "http":"^0.0.0",
+      "https":"^1.0.0",
+      "method-override":"^2.3.9",
+      "path":"^0.12.7",
+      "sudo": "^1.0.3"
+  }
+}
